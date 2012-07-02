@@ -1,0 +1,41 @@
+#!/usr/bin/ruby
+
+class JavaParser
+  def initialize
+    @is_in_comment = false
+  end
+
+  def parse_line(line)
+    if !@is_in_comment
+      if line =~ /\/\*/
+        @is_in_comment = true
+        return ""
+      end
+      if line =~ /[\{\}]+/
+        return line.gsub(/([^\{\}])*/, "")
+      end
+      strip_line = line.strip
+      ((strip_line.empty? || strip_line =~ /^\/\/.*/ || strip_line =~ /^import/ || strip_line =~ /^package/) && "") || "."
+    else
+      if line =~ /\*\//
+        @is_in_comment = false
+      end
+      ""
+    end
+  end
+
+  def is_in_comment?
+    @is_in_comment
+  end
+end
+
+if __FILE__ == $0
+  filename = ARGV.pop
+  file = File.new(filename, "r")
+  parser = JavaParser.new
+  file_summary = ""
+  while (line = file.gets)
+    file_summary << parser.parse_line(line)
+  end
+  puts file_summary
+end
