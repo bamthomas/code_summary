@@ -37,5 +37,6 @@ if __FILE__ == $0
   while (line = file.gets)
     file_summary << parser.parse_line(line)
   end
-  puts file_summary
+  summary_size = file_summary.length
+  puts "#{filename}:#{summary_size}: #{file_summary}"
 end
