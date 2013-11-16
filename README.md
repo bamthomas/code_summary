@@ -8,5 +8,6 @@ Display java-like source file information :
 $ code_summary.rb java_file
 
 # Modify
-Run the tests with
+Run the tests with:
+
 $ autotest
