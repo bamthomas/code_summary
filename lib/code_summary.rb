@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 
 class JavaParser
+  attr_accessor :is_in_comment
   def initialize
     @is_in_comment = false
   end
@@ -22,10 +23,6 @@ class JavaParser
       end
       ""
     end
-  end
-
-  def is_in_comment?
-    @is_in_comment
   end
 end
 

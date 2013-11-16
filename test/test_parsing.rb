@@ -27,10 +27,10 @@ class TestParser < Test::Unit::TestCase
 
   def test_line_of_comment_or_javadoc
     assert_equal("", @java_parser.parse_line("   /* this is comment  "))
-    assert (@java_parser.is_in_comment?)
+    assert (@java_parser.is_in_comment)
     assert_equal("", @java_parser.parse_line(" this is comment again "))
     assert_equal("", @java_parser.parse_line(" this is end of comment */ "))
-    assert (! @java_parser.is_in_comment?)
+    assert (! @java_parser.is_in_comment)
   end
 
   def test_imports_and_package_not_counted
